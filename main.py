@@ -31,7 +31,7 @@ def messageList(message):
             notification.notify(
                 title="No-Ghost Missed Messages",
                 message=f"{messageList(message)}",
-                app_icon='icon.ico',
+                app_icon='assets/icon.ico',
                 timeout=10
             )
             with open("log.txt", 'w') as output:
