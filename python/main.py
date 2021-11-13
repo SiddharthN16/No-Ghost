@@ -91,7 +91,7 @@ while True:
             notification.notify(
                 title="NoGhost: Misses Notifications",
                 message=messageList,
-                app_icon="assets\icon.icon.ico",
+                app_icon="../assets/icon.ico",
                 timeout=5
             )
 
