@@ -38,21 +38,38 @@ def noGhost():
         name = str(client.user).split("#")[0]
         response = f'***{name} is currently AFK, and cannot respond to your message. {name} will be notified of your message when they return. Thank You! (This message is created by a BOT, not {name})***'
 
+        # Server Mentions
         for user in message.mentions:  # If there are multiple mentions in message, search for client user
-            # DMS
-            if (user == client.user and message.guild == None):
-                print("received")
+
+            if (user == client.user):
                 msg = await message.reply(response, mention_author=True)
 
                 msgOutput(message)
 
                 await asyncio.sleep(1.0)
 
+                # Deletes Message After 10 secs
                 for i in range(10):
                     await msg.edit(content=f"{response} *Deleting in {10-i}...*")
                     await asyncio.sleep(0.5)
 
                 await msg.delete()
+
+        # DM's
+        if (message.guild == None):
+            msg = await message.reply(response, mention_author=True)
+
+            msgOutput(message)
+
+            await asyncio.sleep(1.0)
+
+            # Deletes Message After 10 secs
+            for i in range(10):
+                await msg.edit(content=f"{response} *Deleting in {10-i}...*")
+                await asyncio.sleep(0.5)
+
+            await msg.delete()
+
         client.run(token)
 
 
